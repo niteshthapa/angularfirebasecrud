@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <form [formGroup]="Form" novalidate>
+        <form [formGroup]="Form"  novalidate>
             <div class="card" *ngIf="student">
                 <div class="card-body">
                     <div class="form-group">
@@ -42,7 +42,7 @@
                     <a *ngIf="!editMode" [routerLink]="['/student']" class="btn btn-primary">Back</a>
                     <a *ngIf="!editMode" [routerLink]="['/studentdetails',student.id]" [queryParams]="{editMode:true}"
                         class="btn btn-primary float-right">Edit</a>
-                    <button type="submit" [routerLink]="['/studentdetails',student.id]" *ngIf="editMode"
+                    <button type="button" [disabled]="!Form.valid" [routerLink]="['/studentdetails',student.id]" *ngIf="editMode"
                         (click)="updateData(student)" class="btn btn-primary">Update</button>
                     <a *ngIf="editMode" [routerLink]="['/studentdetails',student.id]"
                         class="btn btn-primary float-right">Cancel</a>

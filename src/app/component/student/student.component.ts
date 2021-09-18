@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 interface Student{
   id:number,
+  name:string,
   age:number,
   salary:number,
   des:number
