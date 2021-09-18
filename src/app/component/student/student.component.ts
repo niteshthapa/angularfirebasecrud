@@ -15,7 +15,6 @@ export class StudentComponent implements OnInit {
   url:string ="https://authangular-7-2ea5d-default-rtdb.europe-west1.firebasedatabase.app/data.json";
   constructor(private _http:HttpClient){}
 students:Student[]= [ ]
-
   ngOnInit(): void {
     let response;
     this._http.get(this.url).subscribe(res=>{
@@ -24,5 +23,4 @@ students:Student[]= [ ]
       console.log( this.students)
     })
   }
-
 }

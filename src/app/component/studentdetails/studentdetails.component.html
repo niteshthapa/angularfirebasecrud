@@ -9,7 +9,7 @@
                         <input *ngIf="editMode" formControlName="name" type="text" [value]="student.name"
                             class="form-control" placeholder="Enter Name">
                         <ng-container
-                            *ngIf="isSubmit && Form.get('name').invalid && (Form.get('name').pristine  || Form.get('name').touched)">
+                            *ngIf="isSubmit && Form.get('name').invalid && (Form.get('name').dirty  || Form.get('name').touched)">
                             <small *ngIf="Form.get('name').errors?.required" class="text-danger">This field is
                                 required</small>
                         </ng-container>
@@ -20,7 +20,7 @@
                         <textarea formControlName="des" *ngIf="editMode" class="form-control"
                             rows="3">{{student.des}}</textarea>
                         <ng-container
-                            *ngIf="isSubmit && Form.get('des').invalid && (Form.get('des').pristine  || Form.get('des').touched)">
+                            *ngIf="isSubmit && Form.get('des').invalid && (Form.get('des').dirty  || Form.get('des').touched)">
                             <small *ngIf="Form.get('des').errors?.required" class="text-danger">This field is
                                 required</small>
                         </ng-container>
@@ -32,7 +32,7 @@
                         <input formControlName="age" *ngIf="editMode" type="number" [value]="student.age"
                             class="form-control" placeholder="Enter age">
                         <ng-container
-                            *ngIf="isSubmit && Form.get('age').invalid && (Form.get('age').pristine  || Form.get('age').touched)">
+                            *ngIf="isSubmit && Form.get('age').invalid && (Form.get('age').dirty  || Form.get('age').touched)">
                             <small *ngIf="Form.get('age').errors?.required" class="text-danger">This field is
                                 required</small>
                         </ng-container>
@@ -42,7 +42,7 @@
                     <a *ngIf="!editMode" [routerLink]="['/student']" class="btn btn-primary">Back</a>
                     <a *ngIf="!editMode" [routerLink]="['/studentdetails',student.id]" [queryParams]="{editMode:true}"
                         class="btn btn-primary float-right">Edit</a>
-                    <button type="button" *ngIf="editMode" [routerLink]="['/studentdetails',student.id]"
+                    <button type="submit" [routerLink]="['/studentdetails',student.id]" *ngIf="editMode"
                         (click)="updateData(student)" class="btn btn-primary">Update</button>
                     <a *ngIf="editMode" [routerLink]="['/studentdetails',student.id]"
                         class="btn btn-primary float-right">Cancel</a>

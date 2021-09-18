@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-studentdetails',
   templateUrl: './studentdetails.component.html',
@@ -22,15 +21,12 @@ export class StudentdetailsComponent implements OnInit {
     });
     this._activatedRoute.paramMap.subscribe(res => {
       this.getStudenDetails(+res.get('id'))
-     
     })
     this._activatedRoute.queryParamMap.subscribe(res => {
       this.editMode = res.get('editMode')
       this.Form.patchValue(this.student)
     })
-    
   }
- 
   getStudenDetails(id: number) {
     this._http.get(`https://authangular-7-2ea5d-default-rtdb.europe-west1.firebasedatabase.app/data/${id}.json`).subscribe(res => {
       this.student = res;
@@ -46,7 +42,7 @@ export class StudentdetailsComponent implements OnInit {
       });
     }
     else {
-      alert('fail')
+      return;
     }
   }
 }
