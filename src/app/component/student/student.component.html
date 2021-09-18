@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-4" *ngFor="let student of students">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{student.name}}</h5>
+              <p class="card-text">{{student.des}}   <span class="px-2 py-1 rounded text-white" [ngClass]="student.age  > 50 ? 'bg-danger' : 'bg-success'" >{{student.age}}</span></p>
+            
+
+              <a [routerLink]="['/studentdetails',student.id]"  href="#" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+          
+    </div>
+</div>
+

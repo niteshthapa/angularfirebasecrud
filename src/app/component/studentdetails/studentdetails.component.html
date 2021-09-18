@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-8">
+        <form [formGroup]="Form" novalidate>
+            <div class="card" *ngIf="student">
+                <div class="card-body">
+                    <div class="form-group">
+                        <h5 *ngIf="!editMode" class="card-title">{{student.name}}</h5>
+                        <label *ngIf="editMode" for="exampleInputEmail1">Name</label>
+                        <input *ngIf="editMode" formControlName="name" type="text" [value]="student.name"
+                            class="form-control" placeholder="Enter Name">
+                        <ng-container
+                            *ngIf="isSubmit && Form.get('name').invalid && (Form.get('name').pristine  || Form.get('name').touched)">
+                            <small *ngIf="Form.get('name').errors?.required" class="text-danger">This field is
+                                required</small>
+                        </ng-container>
+                    </div>
+                    <div class="form-group m-0 p-0">
+                        <p *ngIf="!editMode" class="card-title m-0 p-0">{{student.des}}</p>
+                        <label *ngIf="editMode" for="exampleInputEmail1">Description</label>
+                        <textarea formControlName="des" *ngIf="editMode" class="form-control"
+                            rows="3">{{student.des}}</textarea>
+                        <ng-container
+                            *ngIf="isSubmit && Form.get('des').invalid && (Form.get('des').pristine  || Form.get('des').touched)">
+                            <small *ngIf="Form.get('des').errors?.required" class="text-danger">This field is
+                                required</small>
+                        </ng-container>
+                    </div>
+                    <div class="form-group m-0 p-0">
+                        <small *ngIf="!editMode" class="px-2 py-1 rounded text-white"
+                            [ngClass]="student.age  > 50 ? 'bg-danger' : 'bg-success'">Age: {{student.age}}</small>
+                        <label *ngIf="editMode" for="exampleInputEmail1">Age</label>
+                        <input formControlName="age" *ngIf="editMode" type="number" [value]="student.age"
+                            class="form-control" placeholder="Enter age">
+                        <ng-container
+                            *ngIf="isSubmit && Form.get('age').invalid && (Form.get('age').pristine  || Form.get('age').touched)">
+                            <small *ngIf="Form.get('age').errors?.required" class="text-danger">This field is
+                                required</small>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a *ngIf="!editMode" [routerLink]="['/student']" class="btn btn-primary">Back</a>
+                    <a *ngIf="!editMode" [routerLink]="['/studentdetails',student.id]" [queryParams]="{editMode:true}"
+                        class="btn btn-primary float-right">Edit</a>
+                    <button type="button" *ngIf="editMode" [routerLink]="['/studentdetails',student.id]"
+                        (click)="updateData(student)" class="btn btn-primary">Update</button>
+                    <a *ngIf="editMode" [routerLink]="['/studentdetails',student.id]"
+                        class="btn btn-primary float-right">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
